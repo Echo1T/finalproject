@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/textbut.css" %}">
+    <link rel="stylesheet" href="{% static "css/pSemInfo.css" %}">
+    <title>SemiDu</title>
+    {% load bootstrap5 %}
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body class="bgimg">
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-3 sidebar shadow-lg rounded-3 p-0" style="width: 300px;">
+        <div class="flex-column flex-shrink-0 p-2 rounded-3 sidebg" style="width: 300px;">
+          <h4 class="border-black border-bottom">Hello, {{user.username}}<a href="/signOut"><img src="{% static 'img/so.png' %}" width="30" height="30"></a></h4>
+          <a href="/" class="d-flex border-bottom border-black" >
+            <img src="{% static 'img/SemiDu.png' %}" width="200" height="200" class="d-block mx-auto">
+          </a>
+          <ul class="nav flex-column mb-auto">
+            <li>
+              <a href="/" class="nav-link text-black text-center">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/manageprof" class="nav-link text-center text-black">
+                Manage Profile
+              </a>
+            </li>
+            <li>
+              <a href="/manageseminar" class="nav-link text-center text-black">
+                Create Seminar
+              </a>
+            </li>
+            <li>
+              <a href="/reviewDash" class="nav-link text-center text-black">
+                Review Seminar
+              </a>
+            </li>
+            <li>
+              <a href="#Coming Soon" class="nav-link text-center text-black">
+                About Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 px-md-4">
+        <div class="pt-md-3 pb-md-2 mb-md-3 border-bottom">
+          <h2 class="text-center">Seminar Information</h2>
+        </div>
+        <div class="mb-md-2 border-bottom">
+          <p><b>Seminar Name: </b> {{queUser.semName.seminar_name}}</p>
+          <p><b>Username: </b>{{queUser.joinUser.username}}</p>
+          <p><b>Queue Status: </b>{{queUser.status_req}}</p>
+          <p><b>Reason of Joining:</b><br>{{queUser.reasontoJoin}}</p>
+          <p class="text-center"><b>Payment Proof: </b></p>
+          <img src="{{queUser.proofPic.url}}" alt="Proof of Payment" width="25%" height="25%" class="d-block mx-auto">
+        </div>
+        {% if logged_user.username == queUser.joinUser.username %}
+        {% else %}
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="px-md-2">
+            <div class="input-group">
+              <label class="input-group-text" for="ans">Answer</label>
+              <select class="form-select" style="width: 25%;" id="ans" name="ans" Required>
+              <option selected>-</option>
+              <option value="APPROVE">APPROVE</option>
+              <option value="DENIED">DENIED</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-success px-5 mx-md-auto d-block" type="submit">Submit</button>
+        </form>
+        {% endif %}
+      </main>
+    </div>
+  </div>
+</body>
+</html>

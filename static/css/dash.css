@@ -1,0 +1,12 @@
+
+.nav-item .nav-link.active{
+    color: orange;
+}
+
+.sidebg{
+    background-color: rgb(255, 250, 255);
+}
+
+.tcenter{
+    text-align: center;
+}

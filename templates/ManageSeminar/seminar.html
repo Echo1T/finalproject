@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/semi.css" %}">
+    <link rel="stylesheet" href="{% static "js/seminarPay.js" %}">
+    <title>SemiDu</title>
+    {% load bootstrap5 %}
+    
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-3 sidebar shadow-lg rounded-3 p-0" style="width: 300px;">
+            <div class="flex-column flex-shrink-0 p-2 rounded-3 sidebg" style="width: 300px;">
+              <h4 class="border-black border-bottom">Hello, {{user.username}}<a href="/signOut"><img src="{% static 'img/so.png' %}" width="30" height="30"></a></h4>
+              <a href="/" class="d-flex border-bottom border-black" >
+                <img src="{% static 'img/SemiDu.png' %}" width="200" height="200" class="d-block mx-auto">
+              </a>
+              <ul class="nav flex-column mb-auto">
+                <li>
+                  <a href="/" class="nav-link text-black text-center">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/manageprof" class="nav-link text-center text-black">
+                    Manage Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/manageseminar" class="nav-link text-center active">
+                    Create Seminar
+                  </a>
+                </li>
+                <li>
+                  <a href="/reviewDash" class="nav-link text-center text-black">
+                    Review Seminar
+                  </a>
+                </li>
+                <li>
+                  <a href="#Coming Soon" class="nav-link text-center text-black">
+                    About Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    
+          <main class="col-md-9 px-md-4">
+            <div class="pt-md-3 pb-md-2 mb-md-3 border-bottom">
+              <h1 class="h2 text-center">Create Your Seminar</h1>
+            </div>
+            <div class="">
+                <form action="/manageseminar" method="POST">
+                {% csrf_token %}
+                    <div class ="">
+                        <div class="px-5">
+                            <label for="sName" class ="h5">Seminar Name</lable>
+                            <input type="text" class="form-control input-lg" id="sName" name="sName" Required> <br>
+                        </div>
+                    </div>
+    
+                    <div class ="">
+                        <div class="px-5">
+                          <label for="sPoint" class ="h5">Seminar Purpose</lable>
+                          <input type="text" class="form-control " id="sPoint" name="sPoint" Required> <br>
+                        </div>
+                    </div>
+    
+                    <div class ="">
+                        <div class="px-5">
+                          <label for="sPeeps" class ="h5">Amount of People</lable>
+                          <input type="number" class="form-control " id="sPeeps" name="sPeeps" Required> <br>
+                        </div>
+                    </div>
+    
+                    <div class ="">
+                        <div class="px-5">
+                          <label for="sContact" class ="h5">Contact</lable>
+                          <input type="text" class="form-control " id="sContact" name="sContact" Required> <br>
+                        </div>
+                    </div>
+
+                    <div class ="">
+                      <div class="px-4">
+                        <div class="input-group px-md-4">
+                          <label class="input-group-text" for="stats">Status</label>
+                          <select class="form-select" style="width: 25%;" id="stats" name="stats" Required>
+                          <option selected>-</option>
+                          <option value="Free-to-enter">Free-to-enter</option>
+                          <option value="Pay-to-enter">Pay-to-enter</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+
+                    <div class ="">
+                      <div class="px-4">
+                        <div class="input-group px-md-4">
+                          <label class="input-group-text" for="payMet">Payment</label>
+                          <select class="form-select" style="width: 25%;" id="payMet" name="payMet">
+                            <option selected>-</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BNI">BNI</option>
+                            <option value="SeaBank">SeaBank</option>
+                            <option value="Mastercard">Mastercard</option>
+                            <option value="OVO">OVO</option>
+                            <option value="GO-Pay">GO-Pay</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+
+                    <div class ="">
+                      <div class="px-5">
+                        <label for="payNum" class ="h5">Account Number</lable>
+                        <input type="text" class="form-control " id="payNum" name="payNum"> <br>
+                      </div>
+                    </div>
+    
+                    <button class="btn btn-success px-5 mx-md-auto d-block" type="submit">Create</button>
+    
+                </form>
+            </div>
+          </main>
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/textbut.css" %}">
+    <link rel="stylesheet" href="{% static "css/pSemInfo.css" %}">
+    <title>SemiDu</title>
+    {% load bootstrap5 %}
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-3 sidebar shadow-lg rounded-3 p-0" style="width: 300px;">
+        <div class="flex-column flex-shrink-0 p-2 rounded-3 sidebg" style="width: 300px;">
+          <h4 class="border-black border-bottom">Hello, {{user.username}}<a href="/signOut"><img src="{% static 'img/so.png' %}" width="30" height="30"></a></h4>
+          <a href="/" class="d-flex border-bottom border-black" >
+            <img src="{% static 'img/SemiDu.png' %}" width="200" height="200" class="d-block mx-auto">
+          </a>
+          <ul class="nav flex-column mb-auto">
+            <li>
+              <a href="/" class="nav-link text-black text-center">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/manageprof" class="nav-link text-center text-black">
+                Manage Profile
+              </a>
+            </li>
+            <li>
+              <a href="/manageseminar" class="nav-link text-center text-black">
+                Create Seminar
+              </a>
+            </li>
+            <li>
+              <a href="/reviewDash" class="nav-link text-center text-black">
+                Review Seminar
+              </a>
+            </li>
+            <li>
+              <a href="#Coming Soon" class="nav-link text-center text-black">
+                About Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 px-md-4 ">
+        <div class="border border-2 mt-md-4 shadow-lg rounded-3">
+            <div class="pt-md-3 pb-md-2 mb-md-3 border-bottom ">
+                <h2 class="text-center">Ticket Information</h2>
+            </div>
+            <div class="mb-md-5">
+                <h2 class = "text-center text-break">{{receipts.semInfo.seminar_name}}</h2>
+                <img src="{{receipts.qrCD.url}}" alt="Seminar QR Code" width="200" height="200" class="d-block mx-auto">
+                <p class="text-break ps-4 fs-4"><br><b class="h3">Username:</b> {{receipts.semUs.username}}</p>
+                <p class = "ps-4 text-break fs-4"><b class="h4">Seminar Purpose:</b> <br> {{receipts.semInfo.seminar_purpose}}</p>
+                <p class = "ps-4 text-break fs-4"><b class="h4">Seminar Contact:</b> {{receipts.semInfo.seminar_contact}}</p>
+            </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

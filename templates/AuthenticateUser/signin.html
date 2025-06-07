@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Page</title>
+    {% load bootstrap5 %}
+    {% load static %}
+    {% bootstrap_css %}
+</head>
+<body class="bg-warning">
+    <div class="container my-5 d-md-flex justify-content-center">
+        <div class="position-relative p-5 text-center text-muted bg-body rounded-3">
+            <img src="{% static 'img/SemiDu1.jpg' %}" width="150" height="150">
+            <h2>Account Sign In</h2> <br>
+
+            <form action="/authuser" method="POST">
+            {% csrf_token %}
+                <div class ="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="uName" class ="col-form-label">Username</lable>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="uName" name="uName" Required> <br>
+                    </div>
+                </div>
+
+                <div class ="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="uPass" class ="col-form-label">Password</lable>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" class="form-control" id="uPass" name="uPass" Required><br>
+                    </div>
+                </div>
+
+                <a href="/manageuser" class="link-warning">
+                    Don't have an Account?
+                </a><br><br>
+
+                <button class="btn btn-success px-5 mb-5" type="submit">Sign In</button>
+
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
